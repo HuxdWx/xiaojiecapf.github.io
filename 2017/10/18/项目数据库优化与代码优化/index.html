@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="项目," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="java算法">
-<meta name="keywords" content="算法">
+<meta name="description" content="关于项目优化最近，项目上线了，然后，一开始比较顺利，前一段时间，由于访问量与数据量激增，导致，tomcat与数据库连接断掉，时常访问不了，因为这个事情，掉了不少的头发，熬了不少的夜，始终查找不到真正的原因，后来经过查看日志，发现，原来，数据库连接池的配置出现了问题，由于连接池，之前使用的是JDBC，现在被我换成了druid，同时对数据库进行优化，慢SQL进行优化，以下为优化的记录。tomcat优化">
+<meta name="keywords" content="项目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法（二）">
-<meta property="og:url" content="http://yoursite.com/2017/10/12/算法（二）/index.html">
+<meta property="og:title" content="项目数据库优化与代码优化">
+<meta property="og:url" content="http://yoursite.com/2017/10/18/项目数据库优化与代码优化/index.html">
 <meta property="og:site_name" content="小胡同学">
-<meta property="og:description" content="java算法">
+<meta property="og:description" content="关于项目优化最近，项目上线了，然后，一开始比较顺利，前一段时间，由于访问量与数据量激增，导致，tomcat与数据库连接断掉，时常访问不了，因为这个事情，掉了不少的头发，熬了不少的夜，始终查找不到真正的原因，后来经过查看日志，发现，原来，数据库连接池的配置出现了问题，由于连接池，之前使用的是JDBC，现在被我换成了druid，同时对数据库进行优化，慢SQL进行优化，以下为优化的记录。tomcat优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T13:32:37.424Z">
+<meta property="og:updated_time" content="2017-10-18T16:11:13.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法（二）">
-<meta name="twitter:description" content="java算法">
+<meta name="twitter:title" content="项目数据库优化与代码优化">
+<meta name="twitter:description" content="关于项目优化最近，项目上线了，然后，一开始比较顺利，前一段时间，由于访问量与数据量激增，导致，tomcat与数据库连接断掉，时常访问不了，因为这个事情，掉了不少的头发，熬了不少的夜，始终查找不到真正的原因，后来经过查看日志，发现，原来，数据库连接池的配置出现了问题，由于连接池，之前使用的是JDBC，现在被我换成了druid，同时对数据库进行优化，慢SQL进行优化，以下为优化的记录。tomcat优化">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/12/算法（二）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/18/项目数据库优化与代码优化/"/>
 
 
 
 
 
-  <title>算法（二） | 小胡同学</title>
+  <title>项目数据库优化与代码优化 | 小胡同学</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/算法（二）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/项目数据库优化与代码优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="学习，努力奋斗的一只小菜鸡">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法（二）</h1>
+          <h1 class="post-title" itemprop="name headline">项目数据库优化与代码优化</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:07:53+08:00">
-                2017-10-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T23:34:54+08:00">
+                2017-10-18
               </time>
             
 
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法学习/" itemprop="url" rel="index">
-                    <span itemprop="name">算法学习</span>
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
                   </a>
                 </span>
 
@@ -354,8 +354,14 @@
       
 
       
-        <p>java算法</p>
-
+        <h1 id="关于项目优化"><a href="#关于项目优化" class="headerlink" title="关于项目优化"></a>关于项目优化</h1><p>最近，项目上线了，然后，一开始比较顺利，前一段时间，由于访问量与数据量激增，导致，tomcat与数据库连接断掉，时常访问不了，因为这个事情，掉了不少的头发，熬了不少的夜，始终查找不到真正的原因，后来经过查看日志，发现，原来，数据库连接池的配置出现了问题，由于连接池，之前使用的是JDBC，现在被我换成了druid，同时对数据库进行优化，慢SQL进行优化，以下为优化的记录。<br><strong>tomcat优化</strong>：其实，这个并未做什么认真的优化，就是将tomcat内存调大,以及配置文件中调整tomcat线程。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;Connector port=<span class="string">"80"</span> protocol=<span class="string">"HTTP/1.1"</span>   </div><div class="line">maxThreads=<span class="string">"600"</span>     <span class="comment">// 最大线程   </span></div><div class="line">minSpareThreads=<span class="string">"100"</span> <span class="comment">// 初始化线程  </span></div><div class="line">maxSpareThreads=<span class="string">"500"</span> <span class="comment">// 一旦创建的线程超过这个值，tomcat就会关闭不需要的连接  </span></div><div class="line">acceptCount=<span class="string">"700"</span> <span class="comment">// 如果当前可使用的处理请求的线程被使用时，可以放到处理队列中的请求书，超过这个就不予处理  </span></div><div class="line">connectionTimeout=<span class="string">"20000"</span>   </div><div class="line">redirectPort=<span class="string">"8443"</span> /&gt;</div><div class="line">```  </div><div class="line">**mysql**优化：由于tomcat报错：</div></pre></td></tr></table></figure></p>
+<p>com.mysql.jdbc.exceptions.jdbc4.CommunicationsException:Communications link failure Last packet sent to the server was X ms ago<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">分析：MySQL服务在长时间不连接之后断开了，断开之后的首次请求会抛出这个异常，但是，通过日志以及在实际生产环境中，未发现这个问题，这个问题也记录一下，这个是修改mysql配置文件，my.ini，添加两个属性。</div><div class="line">```java</div><div class="line">wait_timeout=288000</div><div class="line">interactive_timeout=288000</div></pre></td></tr></table></figure></p>
+<p>后来在压力测试中发现，不是这个问题，同时报错为数据库连接关闭，无法拿到线程,查看mysql线程数量发现，都被占用中，没有多余的线程了，这样导致了，tomcat无法与数据库连接，时间过长就导致上面的问题出现，真是一坑套一坑啊！后来将两个数值调小，这样，会清空空闲的数据库连接，至少到现在没有任何问题。同时，设置mysql自动重启。清空线程池。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wait_timeout=<span class="number">2000</span></div><div class="line">interactive_timeout=<span class="number">2000</span></div></pre></td></tr></table></figure></p>
+<p>贴出durid配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">url: ****</div><div class="line">driverClassName: com.mysql.jdbc.Driver</div><div class="line">username: ****</div><div class="line">password: ****</div><div class="line">filters: stat,wall</div><div class="line">maxActive: 2000</div><div class="line">initialSize: 10</div><div class="line">#initialSize: 1</div><div class="line">maxWait: 60000</div><div class="line">minIdle: 10</div><div class="line">maxIdle: 15</div><div class="line">timeBetweenEvictionRunsMillis: 3000</div><div class="line">minEvictableIdleTimeMillis: 300000</div><div class="line">validationQuery: SELECT &apos;x&apos;</div><div class="line">testWhileIdle: true</div><div class="line">testOnBorrow: false</div><div class="line">testOnReturn: false</div><div class="line">maxOpenPreparedStatements: -1</div><div class="line">removeAbandoned: true</div><div class="line">removeAbandonedTimeout: 7200</div><div class="line">logAbandoned: true</div></pre></td></tr></table></figure></p>
+<p>同时，发现durid有一个配置比较有意思<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">poolPreparedStatements</div><div class="line">是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。</div><div class="line"></div><div class="line">maxOpenPreparedStatements</div><div class="line">要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100</div></pre></td></tr></table></figure></p>
+<p>这里的建议是mysql关闭，但是，通过查阅发现，如果你的mysql版本为5.5这是可以开启的，据说性能提升巨大，这个我感觉可以测试一下。万一成功了呢！哈哈。</p>
+<p>总结：<br>一、项目中代码存在巨大问题，有些连接以及流没有完全关闭，容易造成内存溢出。<br>二、对数据库表与表之间的关联性不好，特别是在有大批量数据的时候，这样很容易造成，之前的数据查询是没有问题的，结果数据量一大，就发现出现了非常多的慢sql这些都是需要注意的。<br>三、一定要对做好压力测试，同时对mysql以及tomcat进行针对性的调优。</p>
+<h6 id="—————未经允许，不可转载—————"><a href="#—————未经允许，不可转载—————" class="headerlink" title="—————未经允许，不可转载—————"></a>—————未经允许，不可转载—————</h6>
       
     </div>
     
@@ -376,7 +382,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/项目/" rel="tag"># 项目</a>
           
         </div>
       
@@ -389,15 +395,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/15/关于一次紧急加班/" rel="next" title="关于一次紧急加班">
+                <i class="fa fa-chevron-left"></i> 关于一次紧急加班
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/15/关于一次紧急加班/" rel="prev" title="关于一次紧急加班">
-                关于一次紧急加班 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,8 +455,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -512,6 +527,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于项目优化"><span class="nav-number">1.</span> <span class="nav-text">关于项目优化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#—————未经允许，不可转载—————"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">—————未经允许，不可转载—————</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
