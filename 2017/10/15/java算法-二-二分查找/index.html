@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="java算法二分查找理解二分查找：二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的">
+<meta name="description" content="java算法二分查找理解二分查找：二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的。   官方解读：二分查找又成折半查找，一种效率较高">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java算法(二) 二分查找">
 <meta property="og:url" content="http://yoursite.com/2017/10/15/java算法-二-二分查找/index.html">
 <meta property="og:site_name" content="小胡同学">
-<meta property="og:description" content="java算法二分查找理解二分查找：二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的">
+<meta property="og:description" content="java算法二分查找理解二分查找：二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的。   官方解读：二分查找又成折半查找，一种效率较高">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-15T13:47:20.223Z">
+<meta property="og:updated_time" content="2017-10-19T16:17:20.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java算法(二) 二分查找">
-<meta name="twitter:description" content="java算法二分查找理解二分查找：二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的">
+<meta name="twitter:description" content="java算法二分查找理解二分查找：二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的。   官方解读：二分查找又成折半查找，一种效率较高">
 
 
 
@@ -354,8 +354,10 @@
       
 
       
-        <p>java算法二分查找<br>理解二分查找：二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的</p>
-
+        <h1 id="java算法二分查找"><a href="#java算法二分查找" class="headerlink" title="java算法二分查找"></a>java算法二分查找</h1><h6 id="理解二分查找："><a href="#理解二分查找：" class="headerlink" title="理解二分查找："></a>理解二分查找：</h6><p>二分查找在刚开始学习java的时候会有一个例子，就是，我们写个猜数字的游戏，没有什么人是从1猜到100吧，如果你这么玩，那也没毛病，我会给你数字加到1个亿，哈哈！大家基本上都是从中间开始猜数字，如果大了，那就缩小范围，就是这个样子来的，这个就是二分查找的一个思想，但是，这个数组必须是有序的，要不然没有办法去排序的。  </p>
+<h6 id="官方解读："><a href="#官方解读：" class="headerlink" title="官方解读："></a>官方解读：</h6><p>二分查找又成折半查找，一种效率较高的查找方法，折半查找算法的思想就是将元素值小于该中点元素，查询过程中采用跳跃方式查找，即以有序列的中点位置为比较对象，如果需要的元素值小于该中点元素，则将待查序列缩小为左半部分，否则右半部分，所以，这就要求先决条件为元素必须有序。  </p>
+<h6 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h6><p>折半查找优点，次数少，速度快，平均性能好，缺点，要求待查表为有序表，而且插入删除困难，因此，适用与不经常变动的有序列表。<br>二分查找的步骤描述：<br>1、首先确定整个查找区间的中间位置 mid = (left + right) /2<br>2、用待查关键字值与中间位置的关键字进行比较；<br>如果相等，查询成功<br>如果大于，在右半个区域进行半折查询<br>如果小于，在左半个区域进行半折查询  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 二分查找</span></div><div class="line"><span class="comment"> * Created by huxudong on 2017/9/16.</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> huxudong</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span>[] srcArray= <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">103</span>&#125;;</div><div class="line">       System.out.print(binarySearch(srcArray,<span class="number">0</span>,srcArray.length-<span class="number">1</span>,<span class="number">80</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 二分查找，递归实现</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> srcArray</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> start</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> end</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] srcArray,<span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">       <span class="keyword">int</span> mid = (end -start)/<span class="number">2</span>+start;</div><div class="line">        <span class="keyword">if</span>(srcArray[mid] == key)&#123;</div><div class="line">            <span class="keyword">return</span> mid;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(start&gt;=end)&#123;</div><div class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (key &gt; srcArray[mid])&#123;</div><div class="line">            <span class="keyword">return</span> binarySearch(srcArray,mid+<span class="number">1</span>,end,key);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (key &lt; srcArray[mid])&#123;</div><div class="line">            <span class="keyword">return</span>  binarySearch(srcArray,start,mid-<span class="number">1</span>,key);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -453,8 +455,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -516,6 +527,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java算法二分查找"><span class="nav-number">1.</span> <span class="nav-text">java算法二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#理解二分查找："><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">理解二分查找：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#官方解读："><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">官方解读：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#优缺点："><span class="nav-number">1.0.0.0.0.3.</span> <span class="nav-text">优缺点：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
