@@ -79,21 +79,20 @@
 
 
 
-<meta name="description" content="微信公众号：码农小胡  大吼一声，我胡汉三又回来了，最近太忙，终于可以学习自己的东西了，开始更新中，都是眼泪啊。 Hadoop HDFS（一）由于时间关系，经常忙着工作，很少写一些文章了，现在重新开始，记录一下自己在学习中所遇到的问题，这次学习Hadoop和其他的文章不一样，减去繁琐的教程，直接记录自己学习的东西，为什么不从搭建环境开始写呢，网上一堆，太多了，所以，自己百度一下全部可以搞定，这里">
+<meta name="description" content="微信公众号：码农小胡 Hadoop HDFS（二）NAMENODE工作机制NAMENODE职责：（1）负责客户端请求的响应。（2）元数据的管理，查询，修改。 元数据管理：namenode对数据的管理采用了三种形式：内存元数据磁盘元数据镜像文件数据操作日志文件 元数据存储机制1）、内存中有一份完整的元数据 2）、磁盘中有一个“准完整”的元数据镜像 3）、用于衔接内存metadata和持久化元数据镜像">
 <meta name="keywords" content="Hadoop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop HDFS(一)">
-<meta property="og:url" content="http://yoursite.com/2018/05/20/Hadoop-HDFS-一/index.html">
+<meta property="og:title" content="Hadoop HDFS(二)">
+<meta property="og:url" content="http://yoursite.com/2018/05/31/Hadoop-HDFS-二/index.html">
 <meta property="og:site_name" content="小胡同学">
-<meta property="og:description" content="微信公众号：码农小胡  大吼一声，我胡汉三又回来了，最近太忙，终于可以学习自己的东西了，开始更新中，都是眼泪啊。 Hadoop HDFS（一）由于时间关系，经常忙着工作，很少写一些文章了，现在重新开始，记录一下自己在学习中所遇到的问题，这次学习Hadoop和其他的文章不一样，减去繁琐的教程，直接记录自己学习的东西，为什么不从搭建环境开始写呢，网上一堆，太多了，所以，自己百度一下全部可以搞定，这里">
+<meta property="og:description" content="微信公众号：码农小胡 Hadoop HDFS（二）NAMENODE工作机制NAMENODE职责：（1）负责客户端请求的响应。（2）元数据的管理，查询，修改。 元数据管理：namenode对数据的管理采用了三种形式：内存元数据磁盘元数据镜像文件数据操作日志文件 元数据存储机制1）、内存中有一份完整的元数据 2）、磁盘中有一个“准完整”的元数据镜像 3）、用于衔接内存metadata和持久化元数据镜像">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ormmff27s.bkt.clouddn.com/HDFS%E5%86%99%E6%95%B0%E6%8D%AE.jpg">
-<meta property="og:image" content="http://ormmff27s.bkt.clouddn.com/HDFSread.jpg">
-<meta property="og:updated_time" content="2018-05-20T13:26:09.834Z">
+<meta property="og:image" content="http://ormmff27s.bkt.clouddn.com/secondarynamenode%E5%85%83%E6%95%B0%E6%8D%AEcheckpoint%E6%9C%BA%E5%88%B6.png">
+<meta property="og:updated_time" content="2018-05-31T11:29:06.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop HDFS(一)">
-<meta name="twitter:description" content="微信公众号：码农小胡  大吼一声，我胡汉三又回来了，最近太忙，终于可以学习自己的东西了，开始更新中，都是眼泪啊。 Hadoop HDFS（一）由于时间关系，经常忙着工作，很少写一些文章了，现在重新开始，记录一下自己在学习中所遇到的问题，这次学习Hadoop和其他的文章不一样，减去繁琐的教程，直接记录自己学习的东西，为什么不从搭建环境开始写呢，网上一堆，太多了，所以，自己百度一下全部可以搞定，这里">
-<meta name="twitter:image" content="http://ormmff27s.bkt.clouddn.com/HDFS%E5%86%99%E6%95%B0%E6%8D%AE.jpg">
+<meta name="twitter:title" content="Hadoop HDFS(二)">
+<meta name="twitter:description" content="微信公众号：码农小胡 Hadoop HDFS（二）NAMENODE工作机制NAMENODE职责：（1）负责客户端请求的响应。（2）元数据的管理，查询，修改。 元数据管理：namenode对数据的管理采用了三种形式：内存元数据磁盘元数据镜像文件数据操作日志文件 元数据存储机制1）、内存中有一份完整的元数据 2）、磁盘中有一个“准完整”的元数据镜像 3）、用于衔接内存metadata和持久化元数据镜像">
+<meta name="twitter:image" content="http://ormmff27s.bkt.clouddn.com/secondarynamenode%E5%85%83%E6%95%B0%E6%8D%AEcheckpoint%E6%9C%BA%E5%88%B6.png">
 
 
 
@@ -123,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/20/Hadoop-HDFS-一/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/31/Hadoop-HDFS-二/"/>
 
 
 
 
 
-  <title>Hadoop HDFS(一) | 小胡同学</title>
+  <title>Hadoop HDFS(二) | 小胡同学</title>
   
 
 
@@ -268,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/20/Hadoop-HDFS-一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/31/Hadoop-HDFS-二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="学习，努力奋斗的一只小菜鸡">
@@ -285,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hadoop HDFS(一)</h1>
+          <h1 class="post-title" itemprop="name headline">Hadoop HDFS(二)</h1>
         
 
         <div class="post-meta">
@@ -297,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T21:10:55+08:00">
-                2018-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T19:09:44+08:00">
+                2018-05-31
               </time>
             
 
@@ -357,17 +356,28 @@
       
 
       
-        <blockquote>
-<p>微信公众号：码农小胡</p>
-</blockquote>
-<p>大吼一声，我胡汉三又回来了，最近太忙，终于可以学习自己的东西了，开始更新中，都是眼泪啊。</p>
-<h3 id="Hadoop-HDFS（一）"><a href="#Hadoop-HDFS（一）" class="headerlink" title="Hadoop HDFS（一）"></a>Hadoop HDFS（一）</h3><p>由于时间关系，经常忙着工作，很少写一些文章了，现在重新开始，记录一下自己在学习中所遇到的问题，这次学习Hadoop和其他的文章不一样，减去繁琐的教程，直接记录自己学习的东西，为什么不从搭建环境开始写呢，网上一堆，太多了，所以，自己百度一下全部可以搞定，这里直接从hdfs开始。</p>
-<h3 id="HDFS的概念"><a href="#HDFS的概念" class="headerlink" title="HDFS的概念"></a>HDFS的概念</h3><p>首先，hdfs是一个文件系统，用来存储文件，通过统一的命名空间—目录树来定位文件<br>其次，它是分布式的，由多个服务器联合起来，实现功能。</p>
-<h6 id="重要特性："><a href="#重要特性：" class="headerlink" title="重要特性："></a>重要特性：</h6><p>（1）HDFS中的文件在物理上是分块存储的，块的大小是可以通过配置参数来规定，默认的是128M，老版本的是64M。<br>（2）HDFS文件系统会给客户端提供一个统一的抽象目录树，客户端通过路径来访问文件。<br>（3）目录结构及文件分块信息的管理由namenode节点承担<br>namenode是HDFS集群主节点，负责维护整个HDFS文件系统的目录树，以及每一个路径所对应的block块信息（包括block的id，以及所在的datanode服务器）<br>（4）文件的各个block的存储管理由datanode节点承担<br>dateanode是HDFS集群从节点，每一个block都可以在多个datanode上存储多啊个副本，并可以通过参数设置。<br>（5）需要注意的是HDFS是设计成适应一词写入，多次读取的场景，且不支持文件的修改<br><strong><em>（注意：适合做数据分析，不能做网盘，不便修改，延迟大，网络开销大，成本高，还是使用百度网盘吧）</em></strong></p>
-<h3 id="HDFS工作机制"><a href="#HDFS工作机制" class="headerlink" title="HDFS工作机制"></a>HDFS工作机制</h3><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><p>（1）HDFS两个角色：namenode，datanode<br>（2）Namenode负责管理文件系统元数据<br>（3）Datanode负责管理用户文件数据块<br>（4）文件按照固定大小切成若干块后分布式存储在若干datanode上<br>（5）每一额文件块可以有多个副本，放在不用的datanode上<br>（6）Datanode会定期向Namenode汇报自身保存文件block信息，而namenode则会负责爆出文件的副本数量<br>（7）HDFS内部工作机制对客户端保持透明，客户端请求访问HDFS都是通过向namenode申请来进行</p>
-<h4 id="2、HDFS写数据流程"><a href="#2、HDFS写数据流程" class="headerlink" title="2、HDFS写数据流程"></a>2、HDFS写数据流程</h4><p>1、namenode通信请求上传文件，namenode检查目标文件是否存在，父目录是否存在。<br>2、namenode返回是否可以上传。<br>3、client请求第一个block传输到哪个datanode服务器上<br>4、namenode返回三个服务器datanade。<br>5、client请求3台datanode中的一台上传数据（其实是一个RPC调用，建立pipeline），A收到请求会调用B，B调用C将pipline建立完成，返回客户端一个响应，告诉客户端以及准备好.<br>6、client开始往A上传第一额block，以pcaket为短文，A收到一个packet就会传输给B，B传给C，A每传一个packet会放入一个应答队列等待应答<br>7、当一个block传输完成之后，client再次请求namenode上传第二个block<br><strong><em>（注：上传数据时，datanode选择策略：<br>1、第一给副本先考虑client 端最近的（同机架）2、第二个副本考虑跨机架挑选，增加副本可靠性，3、第三个副本就在第一个副本同机架另外选一台datanode存放<br>如何知道哪个机器在哪个机架上，可配置机架感知）</em></strong></p>
-<p><img src="http://ormmff27s.bkt.clouddn.com/HDFS%E5%86%99%E6%95%B0%E6%8D%AE.jpg" alt="你想输入的替代文字">   </p>
-<h4 id="3、HDFS读数据流程"><a href="#3、HDFS读数据流程" class="headerlink" title="3、HDFS读数据流程"></a>3、HDFS读数据流程</h4><p>1、跟namenode通信查询元数据，找到文件所在大datanode服务器。<br>2、挑选一台datanode服务器，请求建立scoket流。<br>3、datanode发送数据，以packet 为单位做校验<br>4、客户端以packet为单位接受，先在本地缓存，然后写入目标文件<br><img src="http://ormmff27s.bkt.clouddn.com/HDFSread.jpg" alt="你想输入的替代文字">   </p>
+        <p>微信公众号：码农小胡</p>
+<h3 id="Hadoop-HDFS（二）"><a href="#Hadoop-HDFS（二）" class="headerlink" title="Hadoop HDFS（二）"></a>Hadoop HDFS（二）</h3><h2 id="NAMENODE工作机制"><a href="#NAMENODE工作机制" class="headerlink" title="NAMENODE工作机制"></a>NAMENODE工作机制</h2><h3 id="NAMENODE职责："><a href="#NAMENODE职责：" class="headerlink" title="NAMENODE职责："></a>NAMENODE职责：</h3><p>（1）负责客户端请求的响应。<br>（2）元数据的管理，查询，修改。</p>
+<h3 id="元数据管理："><a href="#元数据管理：" class="headerlink" title="元数据管理："></a>元数据管理：</h3><p>namenode对数据的管理采用了三种形式：<br>内存元数据<br>磁盘元数据镜像文件<br>数据操作日志文件</p>
+<h3 id="元数据存储机制"><a href="#元数据存储机制" class="headerlink" title="元数据存储机制"></a>元数据存储机制</h3><p>1）、内存中有一份完整的元数据</p>
+<p>2）、磁盘中有一个“准完整”的元数据镜像</p>
+<p>3）、用于衔接内存metadata和持久化元数据镜像fsimage之间的操作日志</p>
+<h3 id="checkpoint的详细过程"><a href="#checkpoint的详细过程" class="headerlink" title="checkpoint的详细过程"></a>checkpoint的详细过程</h3><p>1、更新内存。</p>
+<p>2、secondarynamenode请求是否需要checkpoint，如果满足条件，checkpoint。</p>
+<p>3、namnode滚动，当前正在写的edits。</p>
+<p>4、下载操作的文件到secondarynamenode。</p>
+<p>5、加载到内存中并合并数据。</p>
+<p>6、dump成新的image文件。</p>
+<p>7、上传到namenode中。</p>
+<p>8、重命名成fsimage文件。</p>
+<p><img src="http://ormmff27s.bkt.clouddn.com/secondarynamenode%E5%85%83%E6%95%B0%E6%8D%AEcheckpoint%E6%9C%BA%E5%88%B6.png" alt="secondarynamenode元数据checkpoint机制"> </p>
+<p><strong><em>（  附带作用：namenode和secondary namenode的工作目录存储结构完全相同，所以，当namenode故障退出需要重新恢复的时候，可以从secondary namenode的工作目录中将fsimage拷贝到namenode的工作目录，以恢复namenode的元数据<br>）</em></strong></p>
+<h2 id="DATANODE工作机制"><a href="#DATANODE工作机制" class="headerlink" title="DATANODE工作机制"></a>DATANODE工作机制</h2><h3 id="工作职责："><a href="#工作职责：" class="headerlink" title="工作职责："></a>工作职责：</h3><p>存储用户的文件块数据</p>
+<p>定期向namenode汇报自身所持有的block信息</p>
+<p>datanode掉线判断时限参数</p>
+<p>datanode进程死亡或者网络故障造成datanode无法与namenode通信，namenode不会立即把该节点判定死亡，要经过一段时间，这段时间暂称操作时长，HDFS默认的超时时长为10分钟+30秒</p>
+<p>HDFS JAVA 操作<br>直接放代码到GitHub上面了</p>
+<p><a href="https://github.com/xiaojiecapf/hadoopTest" target="_blank" rel="external">GitHub地址</a></p>
 
       
     </div>
@@ -402,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/24/近期感悟/" rel="next" title="近期感悟">
-                <i class="fa fa-chevron-left"></i> 近期感悟
+              <a href="/2018/05/20/Hadoop-HDFS-一/" rel="next" title="Hadoop HDFS(一)">
+                <i class="fa fa-chevron-left"></i> Hadoop HDFS(一)
               </a>
             
           </div>
@@ -411,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/31/Hadoop-HDFS-二/" rel="prev" title="Hadoop HDFS(二)">
-                Hadoop HDFS(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -553,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-HDFS（一）"><span class="nav-number">1.</span> <span class="nav-text">Hadoop HDFS（一）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS的概念"><span class="nav-number">2.</span> <span class="nav-text">HDFS的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#重要特性："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">重要特性：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS工作机制"><span class="nav-number">3.</span> <span class="nav-text">HDFS工作机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、概述"><span class="nav-number">3.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、HDFS写数据流程"><span class="nav-number">3.2.</span> <span class="nav-text">2、HDFS写数据流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、HDFS读数据流程"><span class="nav-number">3.3.</span> <span class="nav-text">3、HDFS读数据流程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-HDFS（二）"><span class="nav-number">1.</span> <span class="nav-text">Hadoop HDFS（二）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAMENODE工作机制"><span class="nav-number"></span> <span class="nav-text">NAMENODE工作机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NAMENODE职责："><span class="nav-number">1.</span> <span class="nav-text">NAMENODE职责：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元数据管理："><span class="nav-number">2.</span> <span class="nav-text">元数据管理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元数据存储机制"><span class="nav-number">3.</span> <span class="nav-text">元数据存储机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkpoint的详细过程"><span class="nav-number">4.</span> <span class="nav-text">checkpoint的详细过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DATANODE工作机制"><span class="nav-number"></span> <span class="nav-text">DATANODE工作机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作职责："><span class="nav-number">1.</span> <span class="nav-text">工作职责：</span></a></li></ol></div>
             
 
           </div>
